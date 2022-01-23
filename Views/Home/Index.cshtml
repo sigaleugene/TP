@@ -1,0 +1,70 @@
+﻿
+<form method="post" action="home\CheckAdress" id="forma" name="">
+    <div >
+        <h2 id="message">     @ViewBag.result  </h2>
+    </div>
+    <div>
+        <input id="address" name="address" type="text" onchange="prov()" />
+    </div>
+    <p></p>
+    <div>
+        <input id="address1" name="address1" type="text" onchange="prov()" />
+    </div>
+    <p></p>
+    <div id="btn" style="display: none;">
+        <button type="submit" id="sub">Отправить</button>
+    </div>
+</form>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/css/suggestions.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/js/jquery.suggestions.min.js"></script>
+
+
+
+<script>
+    $("#address").suggestions({
+        token: "9a578c71241d51abdd2a7ee579d5c039e6db7a07",
+        type: "ADDRESS",
+        /* Вызывается, когда пользователь выбирает одну из подсказок */
+        onSelect: function (suggestion) {
+
+                    console.log(suggestion);
+                    prov();
+                    clr();
+                }
+
+            });
+</script>
+<script>
+    $("#address1").suggestions({
+        token: "9a578c71241d51abdd2a7ee579d5c039e6db7a07",
+        type: "ADDRESS",
+        /* Вызывается, когда пользователь выбирает одну из подсказок */
+        onSelect: function (suggestion) {
+
+            console.log(suggestion);
+            prov();
+            clr();
+        }
+    });
+</script>
+
+<script>
+    function clr() {
+        var a = document.getElementById("message");
+        a.innerHTML = "Введите адреса";
+    };
+    function prov() {
+        var a = document.getElementById("address").value;
+        var b = document.getElementById("address1").value;
+        var button = document.getElementById("btn");
+        button.style.display = "none"
+        if (a.length != 0 && b.length != 0) {
+
+            button.style.display = "block"
+        }
+    };
+    prov();
+
+</script>
